@@ -11,6 +11,10 @@ branding:
 author: Paul Delafosse
 
 inputs:
+  cog-version:
+    description: Version of the cog binary
+    required: false
+    default: '6.2.0'
   release:
     description: Perform a release with cog bump --auto
     required: false
@@ -62,6 +66,8 @@ runs:
       shell: bash
 
     - id: install
+      env:
+        COG_VERSION: ${{ inputs.cog-version }}
       run: ${GITHUB_ACTION_PATH}/install.sh
       shell: bash
 
